@@ -1,0 +1,67 @@
+backend:
+  name: github
+  repo: deepbit86/godatasec-web
+  branch: main
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "config"
+    label: "Configuración del sitio"
+    files:
+      - name: "general"
+        label: "General"
+        file: "content/config/general.md"
+        fields:
+          - { label: "Nombre empresa",  name: "nombre",    widget: "string" }
+          - { label: "Email contacto",  name: "email",     widget: "string" }
+          - { label: "Teléfono",        name: "telefono",  widget: "string" }
+          - { label: "LinkedIn URL",    name: "linkedin",  widget: "string", required: false }
+          - { label: "Twitter URL",     name: "twitter",   widget: "string", required: false }
+
+  - name: "servicios"
+    label: "Servicios"
+    folder: "content/servicios"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título",       name: "title",       widget: "string" }
+      - { label: "Ícono",        name: "icono",       widget: "string" }
+      - { label: "Descripción",  name: "descripcion", widget: "text" }
+      - { label: "Tag",          name: "tag",         widget: "string" }
+      - { label: "Orden",        name: "orden",       widget: "number", default: 1 }
+      - { label: "Activo",       name: "activo",      widget: "boolean", default: true }
+
+  - name: "blog"
+    label: "Blog"
+    folder: "content/blog"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Título",        name: "title",     widget: "string" }
+      - { label: "Fecha",         name: "date",      widget: "datetime" }
+      - { label: "Categoría",     name: "categoria", widget: "select",
+          options: ["Vulnerabilidades","Phishing","Cloud Security","Pentesting","Compliance","Noticias"] }
+      - { label: "Ícono",         name: "icono",     widget: "string", default: "🔐" }
+      - { label: "Resumen",       name: "resumen",   widget: "text" }
+      - { label: "Tiempo lectura",name: "tiempo",    widget: "string", default: "5 min lectura" }
+      - { label: "Contenido",     name: "body",      widget: "markdown" }
+      - { label: "Publicado",     name: "publicado", widget: "boolean", default: false }
+
+  - name: "equipo"
+    label: "Equipo"
+    folder: "content/equipo"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Nombre",          name: "title",       widget: "string" }
+      - { label: "Cargo",           name: "cargo",       widget: "string" }
+      - { label: "Avatar (emoji)",  name: "avatar",      widget: "string", default: "👨‍💻" }
+      - { label: "Descripción",     name: "descripcion", widget: "text" }
+      - { label: "Certificaciones", name: "certs",       widget: "list", allow_add: true }
+      - { label: "Orden",           name: "orden",       widget: "number", default: 1 }
