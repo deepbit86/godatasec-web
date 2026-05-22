@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: deepbit86/godatasec-web
+  name: git-gateway
   branch: main
 
 media_folder: "public/images/uploads"
